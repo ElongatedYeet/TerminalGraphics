@@ -8,6 +8,9 @@ private:
 
 public:
   std::string displayBuffer;
+  Display(){
+    
+  }
   Display(int x, int y){
     sizeX = x; sizeY = y;
     for(int i = 1; i <= y; i++){
