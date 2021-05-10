@@ -1,11 +1,13 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "vector.h"
 class Display{
 private:
   int sizeX, sizeY;
-  std::string displayBuffer;
+
 public:
+  std::string displayBuffer;
   Display(int x, int y){
     sizeX = x; sizeY = y;
     for(int i = 1; i <= y; i++){
@@ -15,5 +17,8 @@ public:
   }
   void printDisplay(){
     std::cout << displayBuffer;;
+  }
+  Vector2i getSize(){
+    return Vector2i(sizeX, sizeY);
   }
 };
