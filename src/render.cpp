@@ -6,29 +6,31 @@
 
 class Render{
 private:
-  Display display;
+  Display * display;
   Triangle triangle;
 public:
-  Render(Display dis, Triangle tri){
+  Render(){
+  }
+  Render(Display * dis, Triangle tri){
     display = dis;
     triangle = tri;
   }
 
   void scanner(){
-    display.displayBuffer.resize(0,' ');
-    for(int j = 0; j < display.getSize.y; j++){
-      for(int i = 0; i < display.getSize.x; i++){
+    display->displayBuffer.resize(0,' ');
+    for(int j = 0; j < display->getSize().y; j++){
+      for(int i = 0; i < display->getSize().x; i++){
         if(raycast(triangle,i,j)){
-          display.displayBuffer +=  '#';
+          display->displayBuffer +=  '#';
         }else{
-          display.displayBuffer += ' ';
+          display->displayBuffer += ' ';
         }
       }
-      display.displayBuffer += '\n';
+      display->displayBuffer += '\n';
     }
   }
 
   bool raycast(Triangle tri, int x, int y){
-    isInside(tri.a, tri.b, tri.c, Vector2i(x, y));
+    return isInside(tri.a, tri.b, tri.c, Vector2i(x, y));
   }
 };

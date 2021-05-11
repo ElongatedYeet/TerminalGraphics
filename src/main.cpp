@@ -15,7 +15,7 @@ int main(){
   cout << (a + b).y << endl;
 
   Triangle test(a, b, c);
-  Render renderer(display, test);
+  Render renderer(&display, test);
   renderer.scanner();
   display.printDisplay();
   return 0;
