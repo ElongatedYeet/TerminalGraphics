@@ -36,6 +36,11 @@ public:
     out.y = this->y / a.y;
     return out;
   }
+  bool operator==(const Vector2i& a){
+    bool out;
+    out = (this->x == a.x && this->x == a.x);
+    return out;
+  }
 
 
 };
