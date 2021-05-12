@@ -20,4 +20,7 @@ public:
   Vector2i getSize(){
     return Vector2i(sizeX, sizeY);
   }
+  void clearScreen(){
+    std::cout << "\033[2J\033[1;1H";
+  }
 };

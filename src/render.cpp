@@ -37,21 +37,21 @@ public:
   }
   Triangle2 flatten(Triangle3 tri){
     return Triangle2(
-      Vector2i(
-        (tri.a.x-(display->getSize().x/2))/tri.a.y + (display->getSize().x/2),
-        (tri.a.z-(display->getSize().y/2))/tri.a.y + (display->getSize().y/2)),
-      Vector2i(
-        (tri.b.x-(display->getSize().x/2))/tri.b.y + (display->getSize().x/2),
-        (tri.b.z-(display->getSize().y/2))/tri.b.y + (display->getSize().y/2)),
-      Vector2i(
-        (tri.c.x-(display->getSize().x/2))/tri.c.y + (display->getSize().x/2),
-        (tri.c.z-(display->getSize().y/2))/tri.c.y + (display->getSize().y/2))
+      Vector2f(
+        (tri.a.x-(display->getSize().x/2))/tri.a.z + (display->getSize().x/2),
+        (tri.a.y-(display->getSize().y/2))/tri.a.z + (display->getSize().y/2)),
+      Vector2f(
+        (tri.b.x-(display->getSize().x/2))/tri.b.z + (display->getSize().x/2),
+        (tri.b.y-(display->getSize().y/2))/tri.b.z + (display->getSize().y/2)),
+      Vector2f(
+        (tri.c.x-(display->getSize().x/2))/tri.c.z + (display->getSize().x/2),
+        (tri.c.y-(display->getSize().y/2))/tri.c.z + (display->getSize().y/2))
     );
   }
-  bool raycast(Triangle2 tri, int x, int y){
+  bool raycast(Triangle2 tri, float x, float y){
     if(tri.a == tri.b && tri.b == tri.c){
       return false;
     }
-    return isInside(tri.a, tri.b, tri.c, Vector2i(x, y));
+    return isInside(tri.a, tri.b, tri.c, Vector2f(x, y));
   }
 };
