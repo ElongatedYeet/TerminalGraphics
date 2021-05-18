@@ -9,13 +9,15 @@ class Render{
 private:
   Display * display;
   Triangle3 * triangles;
+  float FOV;
   float smoothing;
 public:
   Render(){
   }
-  Render(Display * dis, Triangle3 * tri, float smooth){
+  Render(Display * dis, Triangle3 * tri, float F, float smooth){
     display = dis;
     triangles = tri;
+    FOV = F;
     smoothing = smooth;
   }
 
@@ -40,14 +42,14 @@ public:
   Triangle2 flatten(Triangle3 tri){
     return Triangle2(
       Vector2f(
-        (tri.a.x-(display->getSize().x/2))/tri.a.z + (display->getSize().x/2),
-        (tri.a.y-(display->getSize().y/2))/tri.a.z + (display->getSize().y/2)),
+        (tri.a.x-(display->getSize().x/2))/(FOV*tri.a.z) + (display->getSize().x/2),
+        (tri.a.y-(display->getSize().y/2))/(FOV*tri.a.z) + (display->getSize().y/2)),
       Vector2f(
-        (tri.b.x-(display->getSize().x/2))/tri.b.z + (display->getSize().x/2),
-        (tri.b.y-(display->getSize().y/2))/tri.b.z + (display->getSize().y/2)),
+        (tri.b.x-(display->getSize().x/2))/(FOV*tri.b.z) + (display->getSize().x/2),
+        (tri.b.y-(display->getSize().y/2))/(FOV*tri.b.z) + (display->getSize().y/2)),
       Vector2f(
-        (tri.c.x-(display->getSize().x/2))/tri.c.z + (display->getSize().x/2),
-        (tri.c.y-(display->getSize().y/2))/tri.c.z + (display->getSize().y/2))
+        (tri.c.x-(display->getSize().x/2))/(FOV*tri.c.z) + (display->getSize().x/2),
+        (tri.c.y-(display->getSize().y/2))/(FOV*tri.c.z) + (display->getSize().y/2))
     );
   }
   bool raycast(Triangle2 tri, float x, float y){

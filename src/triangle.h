@@ -45,4 +45,22 @@ public:
     c = rotateY(c, r.y);
     c = rotateZ(c, r.z);
   }
+  void rotateCenter(Vector3f r){
+    Vector3f triCenter((a.x+b.x+c.x)/3,(a.y+b.y+c.y)/3,(a.z+b.z+c.z)/3);
+    a = a - triCenter;
+    b = b - triCenter;
+    c = c - triCenter;
+    a = rotateX(a, r.x);
+    a = rotateY(a, r.y);
+    a = rotateZ(a, r.z);
+    b = rotateX(b, r.x);
+    b = rotateY(b, r.y);
+    b = rotateZ(b, r.z);
+    c = rotateX(c, r.x);
+    c = rotateY(c, r.y);
+    c = rotateZ(c, r.z);
+    a = a +triCenter;
+    b = b + triCenter;
+    c = c + triCenter;
+  }
 };

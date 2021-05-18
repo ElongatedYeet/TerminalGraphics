@@ -17,21 +17,22 @@
 using namespace std;
 int main(){
   unsigned int microsecond = 1000000;
-  Display display(20, 20);
-  Triangle3 main(Vector3f(5,9,1), Vector3f(15,9,1), Vector3f(8,2,1));
+  Display display(32, 32);
+  Triangle3 main(Vector3f(5,5,1), Vector3f(15,5,1), Vector3f(5,15,1));
   Object object(&main, 1);
-  for(int i = 1; i < 50; i++){
+  for(int i = 1; i < 1000; i++){
 
     display.clearScreen();
-    object.getTriangles()->rotate(Vector3f(0,0,0.03f));
-    printf("%f%f%f",object.getTriangles()->a.x,object.getTriangles()->a.y,object.getTriangles()->a.z);
-    Render renderer(&display, object.getTriangles(), 1);
+    if(i%5==0)
+      object.getTriangles()->translate(Vector3f(0.2f,0.1f,0));
+    object.getTriangles()->rotateCenter(Vector3f(0,0,0.02f));
+    Render renderer(&display, object.getTriangles(), 1, 0.1f);
     renderer.scanner(object.getSize());
     display.printDisplay();
     #ifdef _WIN32
-      Sleep(100);
+      Sleep(40);
     #else
-      usleep(0.1*microsecond);
+      usleep(0.04*microsecond);
     #endif
   }
 
