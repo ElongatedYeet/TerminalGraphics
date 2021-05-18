@@ -30,13 +30,19 @@ public:
     c = k;
   }
   void translate(Vector3f t){
-    a + t;
-    b + t;
-    c + t;
+    a = a + t;
+    b = b + t;
+    c = c + t;
   }
   void rotate(Vector3f r){
     a = rotateX(a, r.x);
-    b = rotateX(a, r.y);
-    c = rotateX(a, r.z);
+    a = rotateY(a, r.y);
+    a = rotateZ(a, r.z);
+    b = rotateX(b, r.x);
+    b = rotateY(b, r.y);
+    b = rotateZ(b, r.z);
+    c = rotateX(c, r.x);
+    c = rotateY(c, r.y);
+    c = rotateZ(c, r.z);
   }
 };

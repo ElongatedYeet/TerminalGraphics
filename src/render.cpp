@@ -9,12 +9,14 @@ class Render{
 private:
   Display * display;
   Triangle3 * triangles;
+  float smoothing;
 public:
   Render(){
   }
-  Render(Display * dis, Triangle3 * tri){
+  Render(Display * dis, Triangle3 * tri, float smooth){
     display = dis;
     triangles = tri;
+    smoothing = smooth;
   }
 
   void scanner(int size){
@@ -50,8 +52,9 @@ public:
   }
   bool raycast(Triangle2 tri, float x, float y){
     if(tri.a == tri.b && tri.b == tri.c){
+
       return false;
     }
-    return isInside(tri.a, tri.b, tri.c, Vector2f(x, y));
+    return isInside(tri.a, tri.b, tri.c, Vector2f(x, y), smoothing);
   }
 };
